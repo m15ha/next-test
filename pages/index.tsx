@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+// import styles from '../styles/Home.module.css';
 // import Header from '../components/Header';
 // import menu from './menu';
 import Link from 'next/link';

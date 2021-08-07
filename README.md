@@ -1,1 +1,1 @@
-NextJs + Chakra-ui + nextjs-progressbar + json server
+NextJs + Chakra-ui + nextjs-progressbar + json server + tsx

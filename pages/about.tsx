@@ -17,11 +17,13 @@ export default function About() {
     return (
         <MainLayout>
             <Box
-            mt={6} ml={6}
+                mt={6}
+                ml={6}
                 maxW='sm'
                 borderWidth='1px'
                 borderRadius='lg'
                 overflow='hidden'
+                _hover={{ shadow: 'md' }}
             >
                 <Image src={property.imageUrl} alt={property.imageAlt} />
 

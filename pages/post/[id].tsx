@@ -1,9 +1,12 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { Box, Center, Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import { Alert, AlertIcon, Button } from '@chakra-ui/react';
+import { NextPageContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { MainLayout } from '../../components/MainLayout';
+import { MyPost } from '../../interfaces/post';
+
 
 export default function Post({ post }) {
     const router = useRouter();
@@ -18,24 +21,33 @@ export default function Post({ post }) {
                     <Alert status='error'>{post.post}</Alert>
                 </Stack>
             </Flex>
-             <Link href={'/posts'}><a>
-            <Center>               
-            <Button            
-                colorScheme="twitter"
-                size='xs'
-                variant='solid'                
-                rightIcon={<ArrowForwardIcon />}
-            >
-                Back
-            </Button></Center></a></Link>
+            <Link href={'/posts'}>
+                <a>
+                    <Center>
+                        <Button
+                            colorScheme='twitter'
+                            size='xs'
+                            variant='solid'
+                            rightIcon={<ArrowForwardIcon />}
+                        >
+                            Back
+                        </Button>
+                    </Center>
+                </a>
+            </Link>
         </MainLayout>
-        
     );
 }
 
-Post.getInitialProps = async (ctx) => {
-    const response = await fetch(`http://localhost:4200/posts/${ctx.query.id}`);
-    const post = await response.json();
+interface PostNextPageContext extends NextPageContext {
+    quesry: {
+        id: string;
+    };
+}
+
+Post.getInitialProps = async (ctx: NextPageContext) => {
+    const response = await fetch(`${process.env.API_URL}/posts/${ctx.query.id}`);
+    const post: MyPost = await response.json();
     return {
         post,
     };
