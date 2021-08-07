@@ -17,6 +17,9 @@ export const Header = () => {
             </Box>
             <Spacer />
             <Box>
+                <Button colorScheme='yellow' mr='4' mt='1' size='sm'>
+                    <Link href='/users'>Users</Link>
+                </Button>
                 <Button colorScheme='twitter' mr='4' mt='1' size='sm'>
                     <Link href='/posts'>Posts</Link>
                 </Button>

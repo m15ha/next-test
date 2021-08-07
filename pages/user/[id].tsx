@@ -5,13 +5,13 @@ import { NextPageContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { MainLayout } from '../../components/MainLayout';
-import { MyPost } from '../../interfaces/post';
+import { MyUser } from '../../interfaces/users';
 
 // interface PostPageProps {
 //     post: MyPost;
 // }
 
-export default function Post({ post }) {
+export default function User({ user }) {
     const router = useRouter();
     return (
         <MainLayout title={'Post'}>
@@ -19,12 +19,12 @@ export default function Post({ post }) {
                 <Stack spacing={3}>
                     <Alert status='success'>
                         <AlertIcon />
-                        <Text>{post.title}</Text>
+                        <Text>{user.name}</Text>
                     </Alert>
-                    <Alert status='error'>{post.post}</Alert>
+                    <Alert status='error'>{user.email}</Alert>
                 </Stack>
             </Flex>
-            <Link href={'/posts'}>
+            <Link href={'/users'}>
                 <a>
                     <Center>
                         <Button
@@ -48,10 +48,10 @@ interface PostNextPageContext extends NextPageContext {
     };
 }
 
-Post.getInitialProps = async (ctx: PostNextPageContext) => {
-    const response = await fetch(`http://localhost:4200/posts/${ctx.query.id}`);
-    const post: MyPost = await response.json();
-    return {
-        post,
-    };
-};
+
+export async function getServerSideProps({params}) {
+ 
+    const response = await fetch(`http://jsonplaceholder.typicode.com/users/${params.id}`);
+    const user = await response.json();
+    return { props: { user } };
+}

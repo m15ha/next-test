@@ -13,7 +13,12 @@ export const Footer = () => {
     const { toggleColorMode } = useColorMode();
     const formBackground = useColorModeValue('gray.800', 'gray.600');
     return (
-        <Flex bg={formBackground} p={3} justifyContent='center'>
+        <Flex
+            bg={formBackground}
+            p={3}
+            justifyContent='center'
+            className='footerz'
+        >
             <Text color='gray.50'>Proudly made in Montreal</Text>
             <SunIcon
                 w={5}
@@ -22,6 +27,13 @@ export const Footer = () => {
                 onClick={toggleColorMode}
                 ml={2}
             />
+            <style jsx>{`
+                .footerz {
+                }
+                .link {
+                    text-decoration: none;
+                }
+            `}</style>
         </Flex>
     );
 };
