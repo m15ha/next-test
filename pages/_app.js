@@ -1,7 +1,19 @@
-import '../styles/globals.css'
+import { ChakraProvider } from '@chakra-ui/react';
+import NextNprogress from 'nextjs-progressbar';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+    return (
+        <ChakraProvider>
+            <NextNprogress
+                color='#29D'
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={3}
+                showOnShallow={true}
+            />
+            <Component {...pageProps} />
+        </ChakraProvider>
+    );
 }
 
-export default MyApp
+export default App;
