@@ -65,7 +65,7 @@ export default function Posts({ posts: serverPosts }: PostPageProps) {
     );
 }
 
-Posts.getInitialProps = async ({ req }: NextPageContext) => {
+export async function getInitialProps({ req }: NextPageContext) {
     if (!req) {
         return { posts: null };
     }

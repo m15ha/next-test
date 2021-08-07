@@ -16,22 +16,22 @@ import Link from 'next/link';
 import { MyUser } from '../interfaces/users';
 import { NextPageContext } from 'next';
 
-interface UserPageProps {
-    posts: MyUser[];
-}
+// interface UserPageProps {
+//     posts: MyUser[];
+// }
 
-export default function Users({ users: serverUsers }) {
-    const [users, setUsers] = useState(serverUsers);
-    useEffect(() => {
-        async function load() {
-            const response = await fetch('http://jsonplaceholder.typicode.com/users');
-            const json = await response.json();
-            setUsers(json);
-        }
-        if (!serverUsers) {
-            load();
-        }
-    }, []);
+export default function Users({ users }) {
+    // const [users, setUsers] = useState(serverUsers);
+    // useEffect(() => {
+    //     async function load() {
+    //         const response = await fetch('http://jsonplaceholder.typicode.com/users');
+    //         const json = await response.json();
+    //         setUsers(json);
+    //     }
+    //     if (!serverUsers) {
+    //         load();
+    //     }
+    // }, []);
 
     if (!users) {
         return (
@@ -65,13 +65,10 @@ export default function Users({ users: serverUsers }) {
     );
 }
 
-Users.getStaticProps = async ({ req }: NextPageContext) => {
-    if (!req) {
-        return { posts: null };
-    }
+export async function getStaticProps({ req }) {
     const response = await fetch(`http://jsonplaceholder.typicode.com/users`);
     const users: MyUser[] = await response.json();
-    return {       
-        props: {users}
+    return {
+        props: { users },
     };
-};
+}
